@@ -1,0 +1,63 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_hr_hr_form">
+      <field name="name">view.hr.hr.form</field>
+      <field name="model">hr.hr</field>
+      <field name="arch" type="xml">
+        <form string="HR Form View">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="age"/>
+              <field name="birth_date"/>
+              <field name="salary"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_hr_hr_list">
+      <field name="name">view.hr.hr.list</field>
+      <field name="model">hr.hr</field>
+      <field name="arch" type="xml">
+        <tree string="HR Tee view">
+          <field name="name"/>
+          <field name="age"/>
+          <field name="salary"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_hr_views" model="ir.actions.act_window">
+      <field name="name">HR</field>
+      <field name="res_model">hr.hr</field>
+    </record>
+
+
+    <menuitem name="Custom HR" id="custom_hr_root"/>
+
+    <!-- actions -->
+    <menuitem name="HR" id="custom_hr_menus" parent="custom_hr_root"
+              action="action_hr_views"/>
+
+
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="custom_hr_sale_order_form" model="ir.ui.view">
+        <field name="name">custo.hr.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="num_xyz"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+  </data>
+</odoo>
